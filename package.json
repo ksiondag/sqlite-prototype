@@ -1,0 +1,20 @@
+{
+  "name": "tabletop-tool",
+  "version": "0.0.1",
+  "description": "Tool to automate the tedious parts of tabletop fun.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "tabletop",
+    "tool",
+    "prototype"
+  ],
+  "author": "Silent K",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.1",
+    "express": "^4.13.4"
+  }
+}
