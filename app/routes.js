@@ -1,14 +1,14 @@
 'use strict';
 
-var isLoggedIn = function (req, res, next) {
-    if (req.isAuthenticated()) {
-        return next();
-    }
-
-    res.redirect('/');
-};
-
 module.exports = function (app, passport) {
+    var isLoggedIn = function (req, res, next) {
+        if (req.isAuthenticated()) {
+            return next();
+        }
+
+        res.redirect(app.get('root'));
+    };
+
     // Home page
     app.get('/', function (req, res) {
         res.render('index.html');
@@ -19,8 +19,8 @@ module.exports = function (app, passport) {
     });
 
     app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/profile',
-        failureRedirect : '/login',
+        successRedirect : app.get('root') + '/profile',
+        failureRedirect : app.get('root') + '/login',
         failureFlash : true
     }));
 
@@ -33,7 +33,7 @@ module.exports = function (app, passport) {
 
     app.get('/logout', function (req, res) {
         req.logout();
-        res.redirect('/');
+        res.redirect(app.get('root'));
     });
 };
 

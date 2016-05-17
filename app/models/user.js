@@ -18,7 +18,7 @@ UserModel.prototype.validPassword = function (password) {
 };
 
 UserModel.prototype.insert({
-    email: 'ksiondag846@gmail.com',
+    email: 'testuser',
     password: UserModel.prototype.generateHash('testpassword')
 });
 
