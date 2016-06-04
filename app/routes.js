@@ -6,12 +6,16 @@ module.exports = function (app, passport) {
             return next();
         }
 
-        res.redirect(app.get('root'));
+        res.redirect(req.baseUrl);
     };
 
     // Home page
     app.get('/', function (req, res) {
-        res.render('index.html');
+        if (!req.originalUrl.endsWith('/')) {
+            res.redirect(req.originalUrl + '/');
+        } else {
+            res.render('index.html');
+        }
     });
 
     app.get('/login', function (req, res) {
@@ -19,8 +23,8 @@ module.exports = function (app, passport) {
     });
 
     app.post('/login', passport.authenticate('local-login', {
-        successRedirect : app.get('root') + '/profile',
-        failureRedirect : app.get('root') + '/login',
+        successRedirect : './profile',
+        failureRedirect : './login',
         failureFlash : true
     }));
 
@@ -30,10 +34,9 @@ module.exports = function (app, passport) {
         });
     });
 
-
     app.get('/logout', function (req, res) {
         req.logout();
-        res.redirect(app.get('root'));
+        res.redirect(req.baseUrl);
     });
 };
 
