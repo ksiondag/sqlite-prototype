@@ -13,7 +13,6 @@ const session = require('express-session');
 // setting variables
 module.exports = function (express) {
     const app = express();
-    const port = process.env.PORT || 8080;
 
     nunjucks.configure(__dirname + '/views', {
         autoescape: true,
