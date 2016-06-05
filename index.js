@@ -41,7 +41,6 @@ module.exports = function (express) {
     app.use(flash());
 
     // routes
-    console.log(process.argv);
     require('./app/routes.js')(app, passport);
 
     return app;
